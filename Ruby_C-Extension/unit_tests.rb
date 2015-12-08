@@ -1,4 +1,5 @@
 require 'test/unit'
+require  'test/unit/ui/console/testrunner'
 require_relative 'mychash.so'
 require_relative 'myhash.rb'
 
@@ -173,6 +174,8 @@ module Tests
 	end
 end
 
+
+
 class Test1 < Test::Unit::TestCase
 	include Tests
 
@@ -202,3 +205,6 @@ class Test2 < Test::Unit::TestCase
 		end
 	end
 end
+
+Test::Unit::UI::Console::TestRunner.run(Test1)
+Test::Unit::UI::Console::TestRunner.run(Test2)

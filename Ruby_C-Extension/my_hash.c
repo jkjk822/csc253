@@ -2,7 +2,7 @@
 #include <stddef.h>
 
 struct chashdata {
-	long capacity;
+	long long capacity;
 	struct node ** hash;
 };
 
@@ -33,19 +33,19 @@ static VALUE c_hash;
 static VALUE
 init(int argc, VALUE* argv, VALUE hash){
 	struct chashdata *data = ALLOC(struct chashdata);
-	long capacity = 10;
+	long long capacity = 10;
 
 	if (argc > 1)  // there should only be 0 or 1 arguments
 		rb_raise(rb_eArgError, "wrong number of arguments");
 	else if(argc == 1){
 		Check_Type(argv[0], T_FIXNUM);
-		capacity = FIX2LONG(argv[0]);
+		capacity = NUM2LONG(argv[0]);
 	}
 
 	DATA_PTR(hash) = data;
 	data->capacity = capacity;
 	data->hash = ZALLOC_N(struct node *, capacity);
-	rb_iv_set(hash, "size", INT2FIX(0));
+	rb_iv_set(hash, "size", INT2NUM(0));
 
 	return hash;
 }
@@ -57,9 +57,9 @@ get_size(VALUE hash){
 
 static void
 update_size(VALUE hash, int update){
-	long size = FIX2LONG(get_size(hash));
+	long long size = NUM2LONG(get_size(hash));
 	size += update;
-	rb_iv_set(hash, "size", LONG2FIX(size));
+	rb_iv_set(hash, "size", LONG2NUM(size));
 }
 
 static VALUE
@@ -70,7 +70,7 @@ fetch(VALUE hash, VALUE key){
 	//Retrieve hashtable
 	TypedData_Get_Struct(hash, struct chashdata, &chashdata_type, data);
 
-	long hashkey = FIX2LONG(rb_funcall(key,  rb_intern("object_id"), 0));
+	long long hashkey = NUM2LONG(rb_funcall(key,  rb_intern("object_id"), 0));
 	node = data->hash[hashkey % data->capacity];
 
 	//while(node and node.key != key)
@@ -91,10 +91,10 @@ store(VALUE hash, VALUE key, VALUE val){
 	//Retrieve hashtable
 	TypedData_Get_Struct(hash, struct chashdata, &chashdata_type, data);
 
-	long size = FIX2LONG(get_size(hash));
+	long long size = NUM2LONG(get_size(hash));
 	if(size >= data->capacity){ //if not enough capacity
 		struct node * temp[size];
-		for(long i = 0, j = 0; i < data->capacity; i++){ //store nodes in temp
+		for(long long i = 0, j = 0; i < data->capacity; i++){ //store nodes in temp
 			node = data->hash[i];
 			while(node){
 				temp[j] = node;
@@ -111,11 +111,11 @@ store(VALUE hash, VALUE key, VALUE val){
 		update_size(hash, -size); //size = 0
 
 		//rehash
-		for(long i = 0; i < size; i++)
+		for(long long i = 0; i < size; i++)
 			store(hash, temp[i]->key, temp[i]->val);
 	}
 
-	long hashkey = FIX2LONG(rb_funcall(key,  rb_intern("object_id"), 0));
+	long long hashkey = NUM2LONG(rb_funcall(key,  rb_intern("object_id"), 0));
 	node = data->hash[hashkey % data->capacity];
 
 	//Make new node
@@ -157,7 +157,7 @@ delete(VALUE hash, VALUE key){
 	//Retrieve hashtable
 	TypedData_Get_Struct(hash, struct chashdata, &chashdata_type, data);
 
-	long hashkey = FIX2LONG(rb_funcall(key,  rb_intern("object_id"), 0));
+	long long hashkey = NUM2LONG(rb_funcall(key,  rb_intern("object_id"), 0));
 	node = data->hash[hashkey % data->capacity];
 
 	//Already deleted
@@ -193,7 +193,7 @@ each(VALUE hash){
 	//Retrieve hashtable
 	TypedData_Get_Struct(hash, struct chashdata, &chashdata_type, data);
 
-	for(long i = 0; i < data->capacity; i++){
+	for(long long i = 0; i < data->capacity; i++){
 		node = data->hash[i];
 		while(node){
 			rb_yield_values(2, node->key, node->val);
@@ -212,7 +212,7 @@ dealloc(void *ptr){
 	struct chashdata *data = ptr;
 	if(data){
 		if(data->hash){
-			for(long i = 0; i < data->capacity; i++){
+			for(long long i = 0; i < data->capacity; i++){
 				struct node *node = data->hash[i];
 				struct node *temp_node = data->hash[i];
 				while(node){
@@ -238,7 +238,7 @@ memsize_chash(const void *ptr){
 	return size;
 }
 
-Init_mychash(){
+int Init_mychash(){
 	/* define MyHash class */
 	c_hash = rb_define_class("MyCHash", rb_cData);
 	/* MyHash includes Enumerate module */
