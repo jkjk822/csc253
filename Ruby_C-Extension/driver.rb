@@ -52,9 +52,3 @@ symbol = lambda {|x| x.to_s.to_sym}
 		puts ""
 	end
 end
-
-
-# The evaluation must be reported scientifically.
-# You must provide information enough for other to reconstruct the testing environment and
-# reproduce your results if they choose to.  The writing must be clear, unambiguous, and easy to read.
-# Take a look at a published paper for a precedence to follow.
