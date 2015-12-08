@@ -13,8 +13,8 @@ Sentinel used in places where optional args failed me
 Cool things like:  
  `count()` only taking 0-1 args despite taking a block/number/nothing  
  `cycle()` terminating at maximum recursion and printing helpful stuff instead of errors (while returning -1)  
- `find()`/`detect()` can process `ifnone`'s that are functions or simply expressions
- `grep()` can use regex for matching    
+ `find()`/`detect()` can process `ifnone`'s that are functions or simply expressions  
+ `grep()` can use regex for matching  
  `reduce()`/`inject()` cannot take plain symbols, but requires the corresponding func (operator.add, etc)  
  `zip()` is very neat, it can take infinite lists to zip together, with the block at the beginning, end, or not at all!  
 
