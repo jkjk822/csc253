@@ -238,7 +238,7 @@ memsize_chash(const void *ptr){
 	return size;
 }
 
-int Init_mychash(){
+void Init_mychash(){
 	/* define MyHash class */
 	c_hash = rb_define_class("MyCHash", rb_cData);
 	/* MyHash includes Enumerate module */

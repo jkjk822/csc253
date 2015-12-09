@@ -32,6 +32,8 @@ Testing was done using `Ruby::Benchmark` specifically `Benchmark::bmbm`, which s
 
 ## Results
 
+*Tests were done on my home computer. After a quick look at a CSUG runs, it seems that the Hashes/s might be different, but the ratios between implementations should hold.*
+
 *Hashes per second were calculated by dividing 1 million (the number of hashes done) by the total time taken as given by `Ruby::Benchmark`, averaged across three runs.*
 
 
