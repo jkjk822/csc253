@@ -96,34 +96,6 @@ No, each parameter is covariant (a child) but the return type is not contravaria
 **Answer the following from your memory.  Give the five workflows
 and 4 stages of the unified software development process.**
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 Requirements, Analysis, Design, Implementation, Testing
 Inception, Elaboration, Construction, Transition
 
