@@ -44,15 +44,15 @@ a class is the set of its object methods, e.g. File.methods.  Answer
 the following questions:**  
 **1) Show how to find the minimal object behavior, that is, the set of
 methods that every object has in Ruby.**  
-Object.instance_methods  
+`Object.instance_methods`  
 **2) Show how to find precise difference in behavior between a module
 and a class.**  
-Class.instance_methods - Module.instance_methods (technically one might want to add `+ (Module.instance_methods - Class.instance_methods)` but this is unecessary as it is known that as the parent, Module has no extra methods)  
+`Class.instance_methods - Module.instance_methods` (technically one might want to add `+ (Module.instance_methods - Class.instance_methods)` but this is unecessary as it is known that as the parent, Module has no extra methods)  
 **3) Since a class is an instance of the Class class, is it always the case
 that the class behavior of a class, e.g. Object, is identical to the
 instance behavior of the Class class?  If not, explain why they may
 differ and give an example class that has a different behavior.**  
-Yes, their behavior will always be the same, as class methods are klass.class.instance_methods which, for a class should always give the same as Class.instance_methods
+Yes, their behavior will always be the same, as class methods are `klass.class.instance_methods` which, for a class, should always give the same as `Class.instance_methods`
 
 
 
@@ -60,20 +60,20 @@ Yes, their behavior will always be the same, as class methods are klass.class.in
 **Define the following Haskell types/classes.  You should try to 
 define them yourself before looking up Hasekell documentation.  
 1) Define the boolean type Bool**  
-data Bool = False | True
+`data Bool = False | True`
 **2) Given the type Ordering defined as follows
 data Ordering           =  EQ | LT | GT 
 The type class 'Ord x' has the following methods: compare, <, <=, >,
 >=, max, min.  Give their types.**
 
-class Ord x where 
-  compare:: a -> a -> Int
-  <:: a -> a -> Bool
-  <=:: a -> a -> Bool
-  >:: a -> a -> Bool
-  >=:: a -> a -> Bool
-  max:: a -> a -> a
-  min:: a -> a -> a
+	class Ord x where 
+		compare:: a -> a -> Int
+		<:: a -> a -> Bool
+		<=:: a -> a -> Bool
+		>:: a -> a -> Bool
+		>=:: a -> a -> Bool
+		max:: a -> a -> a
+		min:: a -> a -> a
 
 **3) The actual definition in Haskell is below, which stipulates a
 dependence/inheritance in Ord x  from Eq x
@@ -84,17 +84,17 @@ Inheritence is never strictly necessary, you can always just reimplement the par
 However, in this case it is also not necessary because you can implement all methods simply using < and >. For compare, min, and max, simply test each and if neither are true, you know you are in the equal case. For <= and >= just use the inverse of > and <.
 
 #### ==== (Polymorphism, 5 points)
-If function type B is a subtype of function type A, any B function can
+**If function type B is a subtype of function type A, any B function can
 be substituted any place where function type A is specified.  A and B
 must have the same number of parameters, each parameter covariant, and
 the return value contravariant.  Is 'Cat -> Cat' a subtype of 'Animal
--> Animal'?  Explain your answer.
+-> Animal'?  Explain your answer.**  
 
 
 
 #### ==== (Unified process, 0 point)
-Answer the following from your memory.  Give the five workflows
-and 4 stages of the unified software development process.
+**Answer the following from your memory.  Give the five workflows
+and 4 stages of the unified software development process.**
 
 
 
