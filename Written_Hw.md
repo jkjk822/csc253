@@ -90,6 +90,7 @@ must have the same number of parameters, each parameter covariant, and
 the return value contravariant.  Is 'Cat -> Cat' a subtype of 'Animal
 -> Animal'?  Explain your answer.**  
 
+No, each parameter is covariant (a child) but the return type is not contravariant (a parent), but rather covariant. Thus 'Cat -> Cat' is not a subtype of 'Animal -> Animal'. A correct subtype would be 'Cat -> Organism'
 
 
 #### ==== (Unified process, 0 point)
