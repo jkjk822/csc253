@@ -52,7 +52,7 @@ and a class.**
 that the class behavior of a class, e.g. Object, is identical to the
 instance behavior of the Class class?  If not, explain why they may
 differ and give an example class that has a different behavior.**  
-Yes, their behavior will always be the same, as class methods are `klass.class.instance_methods` which, for a class, should always give the same as `Class.instance_methods`
+Yes, their behavior will always be the same, as class methods are `klass.class.instance_methods` which, for a class, should always give the same as `Class.instance_methods`. (Excluding cases with metaclasses)
 
 
 
