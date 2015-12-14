@@ -60,11 +60,10 @@ Yes, their behavior will always be the same, as class methods are `klass.class.i
 **Define the following Haskell types/classes.  You should try to 
 define them yourself before looking up Hasekell documentation.  
 1) Define the boolean type Bool**  
-`data Bool = False | True`
+`data Bool = False | True`  
 **2) Given the type Ordering defined as follows
 data Ordering           =  EQ | LT | GT 
-The type class 'Ord x' has the following methods: compare, <, <=, >,
->=, max, min.  Give their types.**
+The type class 'Ord x' has the following methods: compare, <, <=, >, >=, max, min.  Give their types.**
 
 	class Ord x where 
 		compare:: a -> a -> Int
@@ -81,7 +80,7 @@ class Eq x => Ord x where ...
 Evaluate this design especially whether the dependence is necessary.**
 
 Inheritence is never strictly necessary, you can always just reimplement the parent method functionality.
-However, in this case it is also not necessary because you can implement all methods simply using < and >. For compare, min, and max, simply test each and if neither are true, you know you are in the equal case. For <= and >= just use the inverse of > and <.
+However, in this case it is also not necessary because you can implement all methods simply using `<` and `>`. For `compare`, `min`, and `max`, simply test both and if neither are true, you know you are in the equal case. For `<=` and `>=` just use the inverse of `>` and `<`.
 
 #### ==== (Polymorphism, 5 points)
 **If function type B is a subtype of function type A, any B function can
